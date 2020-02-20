@@ -1,5 +1,5 @@
 #Description of algorithms of class Algorithms
-	Many realizations of algorithms were taken and supplemented 
+Many realizations of algorithms were taken and supplemented 
 from book of Aditya Bhargava "grokking algorithms" (Грокаем алгоритмы) 2019.
 
 
