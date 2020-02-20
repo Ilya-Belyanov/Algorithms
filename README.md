@@ -1,17 +1,16 @@
+Description of algorithms of class Algorithms
 # Many realizations of algorithms were taken and supplemented 
 from book of Aditya Bhargava "grokking algorithms" (Грокаем алгоритмы) 2019.
 
-Description of algorithms of class Algorithms
 
 	1) dijkSearch: Dijkstra's algorithm.
 		Input values (Necessary: "graph"  in format {node : {neighbour : cost of path} },
-
-Not necessary: "userstart" and "userfinish", otherwise algorithm find out start and finist itself.
+		Not necessary: "userstart" and "userfinish", otherwise algorithm find out start and finist itself.
 		Output values (list of shortest way and cost pf this path).
 
 	2) backpackAlg: algorithm of tast aboutbackpack.
-		Input values (Necessary: "graph" in format {node : [weight, cost] and "lenght" - 
-max weight of "backpack"}.
+		Input values (Necessary: "graph" in format {node : [weight, cost] and "lenght" -
+		max weight of "backpack"}.
 		Output values (maximum cost and list of things for max cost).
 	
 	3) setOptimization: algorithms the problem of coverage of set.
@@ -30,12 +29,12 @@ max weight of "backpack"}.
 
 	7) sSort: selection sort of array.
 		Input values (Necessary: "massive", Not necessary: "sort" - typr of sorting
-if sort = True ->in an order of increasing, otherwise in an order of descending)
+		if sort = True ->in an order of increasing, otherwise in an order of descending)
 		Output values (Sorted list)
 
 	8)fSort: fast sort of array.
 		Input values (Necessary: "massive", Not necessary: "sort" - typr of sorting
-if sort = True ->in an order of increasing, otherwise in an order of descending)
+		if sort = True ->in an order of increasing, otherwise in an order of descending)
 		Output values (Sorted list)
 
 	9) rFactorial and lFactorial: return factorial of input value.
