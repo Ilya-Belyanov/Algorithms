@@ -56,14 +56,5 @@ def function(s):
     return [s[-i - 1] for i in list]
 
 start_time = time.clock()
-for test in Test:
-    print(function(test))
 print(time.clock()-start_time)
 
-def odd_one_out(s):
-    for i in set(s):
-        if (s.count(i)%2):
-            s = s.replace(i,'', (s.count(i) - 1) )
-        else:
-            s = s.replace(i,'')
-    return [word for word in s]
