@@ -43,7 +43,7 @@ class Algorithms:
         return cls.__result(parents, costs, graph, start, userfinish)
 
     @classmethod
-    @decorResult
+    #@decorResult
     def __result(cls, parents, costs, graph, start, finish):
         __path = cls.__countWay(parents, graph, start, finish)
         __inversePath = [__path[len(__path) - i] for i in range(1, len(__path) + 1)]
@@ -111,14 +111,17 @@ class Algorithms:
         costs = [[0 for i in range(length + 1)] for j in range(2)]
         name = [['' for i in range(length + 1)] for j in range(2)]
         for key in graph.keys():
+            weight, cost = graph[key][0], graph[key][1]
             for i in range(1, length + 1):
-                weight, cost = graph[key][0], graph[key][1]
                 if weight > i:
                     costs[1][i] = costs[0][i]
                     name[1][i] = name[0][i]
                 elif cost + costs[0][i - weight] > costs[0][i]:
                     costs[1][i] = cost + costs[0][i - weight]
                     name[1][i] = key + ' ' + name[0][i - weight]
+                else:
+                    costs[1][i] = costs[0][i]
+                    name[1][i] = name[0][i]
 
             inverseCosts, inverseName = costs, name
             costs = [[i for i in inverseCosts[j]] for j in range(-1, 1)]
@@ -143,6 +146,7 @@ class Algorithms:
 
     @classmethod
     def rGraphSearch(cls, queue, graph, letter, verified=()):
+        """Меняет queue!!!"""
         if not queue:
             return None
         else:
@@ -160,13 +164,14 @@ class Algorithms:
     @classmethod
     def lGraphSearch(cls, queue, graph, letter):
         verified = []
-        while queue:
-            person = queue.popleft()
+        que = queue.copy()
+        while que:
+            person = que.popleft()
             if person not in verified:
                 if cls.__checkPerson(person, letter):
                     return person
                 else:
-                    queue += graph[person]
+                    que += graph[person]
                     verified.append(person)
         return None
 
