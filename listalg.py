@@ -7,3 +7,10 @@ def lSum(massive):
     for i in massive:
         count += i
     return count
+
+
+def swap(massive, i, j):
+    memory_i = massive[i]
+    massive[i] = massive[j]
+    massive[j] = memory_i
+    return massive
