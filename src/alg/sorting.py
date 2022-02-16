@@ -1,5 +1,5 @@
 from search import minSearch, maxSearch
-from listalg import swap
+from src.alg.listalg import swap
 
 
 def selectSort(massive, sort=True):

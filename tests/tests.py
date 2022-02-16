@@ -1,7 +1,7 @@
 import unittest
 
-from sorting import *
-from greedy import *
+from src.alg.sorting import *
+from src.alg.greedy import *
 
 
 class AlgTests(unittest.TestCase):
