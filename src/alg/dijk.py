@@ -29,7 +29,7 @@ def _count_way(parents, graph, start, finish):
     path = []
     fin = _check_final(graph, finish)
     path.append(fin)
-    for i in range(len(parents.keys())):
+    for _ in range(len(parents.keys())):
         if path[len(path) - 1] == start:
             break
         try:
@@ -55,14 +55,14 @@ def _check_start(graph, start):
     node_key = set()
     for key in graph.keys():
         node_key |= set(graph[key].keys())
-    for start in set(graph.keys()) - node_key:
-        return start
+    for check_start in set(graph.keys()) - node_key:
+        return check_start
     return None
 
 
 def _count_costs(graph, start):
-    return {i: graph[start][i] if i in graph[start].keys() else float('inf') if i != start else 0 for i in
-            graph.keys()}
+    return {i: graph[start][i] if i in graph[start].keys() else float('inf')
+                               if i != start else 0 for i in graph.keys()}
 
 
 def _count_parents(graph, start):

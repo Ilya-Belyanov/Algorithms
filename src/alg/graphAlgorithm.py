@@ -1,4 +1,4 @@
-def backpackAlg(graph: dict, length: int):
+def backpack(graph: dict, length: int):
     costs = [[0 for i in range(length + 1)] for j in range(2)]
     name = [['' for i in range(length + 1)] for j in range(2)]
     for key in graph.keys():
@@ -14,52 +14,53 @@ def backpackAlg(graph: dict, length: int):
                 costs[1][i] = costs[0][i]
                 name[1][i] = name[0][i]
 
-        inverseCosts, inverseName = costs, name
-        costs = [[i for i in inverseCosts[j]] for j in range(-1, 1)]
-        name = [[i for i in inverseName[j]] for j in range(-1, 1)]
+        inverse_costs, inverse_name = costs, name
+        costs = [list(inverse_costs[j]) for j in range(-1, 1)]
+        name = [list(inverse_name[j]) for j in range(-1, 1)]
     return costs[0][length], name[0][length]
 
 
-def setOptimization(need: set, has: dict):
+def set_optimization(need: set, has: dict):
     """Count coverage cost optimization"""
     final = set()
     while need:
         best = None
-        bestCovered = set()
+        best_covered = set()
         for name, item in has.items():
             covered = need & item
-            if len(covered) > len(bestCovered):
+            if len(covered) > len(best_covered):
                 best = name
-                bestCovered = covered
-        need -= bestCovered
+                best_covered = covered
+        need -= best_covered
         final.add(best)
     return final
 
 
-def rGraphSearch(queue, graph: dict, checkFunction, verified: list = []):
+def graph_search_r(queue, graph: dict, check_function, verified=None):
     """Меняет queue!!!"""
+    if verified is None:
+        verified = []
     if not queue:
         return None
-    else:
-        person = queue.popleft()
-        if person not in verified:
-            if checkFunction(person):
-                return person
-            else:
-                queue += graph[person]
-                verified += person
-        return rGraphSearch(queue, graph, verified)
+    person = queue.popleft()
+    if person not in verified:
+        if check_function(person):
+            return person
+        else:
+            queue += graph[person]
+            verified += person
+    return graph_search_r(queue, graph, verified)
 
 
-def lGraphSearch(queue, graph: dict, checkFunction):
+def graph_search_l(queue, graph: dict, check_function):
     verified = []
     que = queue.copy()
 
     while que:
         person = que.popleft()
-        if person not in verified:
-            if checkFunction(person):
-                return person
-            else:
-                que += graph[person]
-                verified.append(person)
+        if person in verified:
+            continue
+        if check_function(person):
+            return person
+        que += graph[person]
+        verified.append(person)

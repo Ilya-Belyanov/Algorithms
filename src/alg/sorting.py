@@ -11,14 +11,14 @@ def select_sort(massive, sort=True):
     else:
         id_function = 1
 
-    for i in range(len(massive)):
+    for _ in range(len(massive)):
         id_min = functions[id_function](massive)
         new_massive.append(massive.pop(id_min))
     return new_massive
 
 
-def compare(a, b):
-    return a > b
+def compare(first, second):
+    return first > second
 
 
 def bubble_sort(massive, sort=True):
