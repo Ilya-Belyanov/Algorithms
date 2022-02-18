@@ -1,4 +1,4 @@
-def binarySearch(massive, item):
+def binary_search(massive, item):
     """ In an order of increasing or descending"""
     low = 0
     high = len(massive) - 1
@@ -14,21 +14,21 @@ def binarySearch(massive, item):
             return mid
 
 
-def minSearch(massive):
-    minItem = massive[0]
-    idMin = 0
+def min_search(massive):
+    min_item = massive[0]
+    id_min = 0
     for i in range(1, len(massive)):
-        if massive[i] < minItem:
-            minItem = massive[i]
-            idMin = i
-    return idMin
+        if massive[i] < min_item:
+            min_item = massive[i]
+            id_min = i
+    return id_min
 
 
-def maxSearch(massive):
-    maxItem = massive[0]
-    idMax = 0
+def max_search(massive):
+    max_item = massive[0]
+    id_max = 0
     for i in range(1, len(massive)):
-        if massive[i] > maxItem:
-            maxItem = massive[i]
-            idMax = i
-    return idMax
+        if massive[i] > max_item:
+            max_item = massive[i]
+            id_max = i
+    return id_max

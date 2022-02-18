@@ -1,28 +1,27 @@
-from search import minSearch, maxSearch
+from search import min_search, max_search
 from src.alg.listalg import swap
 
 
-def selectSort(massive, sort=True):
+def select_sort(massive, sort=True):
     """ sort = True -> in an order of increasing, otherwise in an order of descending"""
-    newMassive = []
-    functions = (minSearch, maxSearch)
+    new_massive = []
+    functions = (min_search, max_search)
     if sort:
-        idFunction = 0
+        id_function = 0
     else:
-        idFunction = 1
+        id_function = 1
 
     for i in range(len(massive)):
-        idMin = functions[idFunction](massive)
-        newMassive.append(massive.pop(idMin))
-
-    return newMassive
+        id_min = functions[id_function](massive)
+        new_massive.append(massive.pop(id_min))
+    return new_massive
 
 
 def compare(a, b):
     return a > b
 
 
-def bubbleSort(massive, sort=True):
+def bubble_sort(massive, sort=True):
     """ sort = True -> in an order of increasing, otherwise in an order of descending"""
     for i in range(len(massive) - 1):
         is_swap = False
@@ -35,7 +34,7 @@ def bubbleSort(massive, sort=True):
     return massive
 
 
-def fastSort(massive, sort=True):
+def fast_sort(massive, sort=True):
     """ sort = True -> in an order of increasing, otherwise in an order of descending"""
     if len(massive) < 2:
         return massive
@@ -46,4 +45,4 @@ def fastSort(massive, sort=True):
             left.append(item)
         else:
             right.append(item)
-    return fastSort(left, sort) + [massive[0]] + fastSort(right, sort)
+    return fast_sort(left, sort) + [massive[0]] + fast_sort(right, sort)

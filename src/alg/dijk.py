@@ -1,33 +1,33 @@
-def dijkSearch(graph, userstart=None, userfinish=None):
+def dijk_search(graph, user_start=None, user_finish=None):
     verified = []
-    start = __checkStart(graph, userstart)
-    costs = __countCosts(graph, start)
-    parents = __countParents(graph, start)
-    node = __lowerCost(costs, verified)
+    start = _check_start(graph, user_start)
+    costs = _count_costs(graph, start)
+    parents = _count_parents(graph, start)
+    node = _lower_cost(costs, verified)
     while node is not None:
         cost = costs[node]
         neighbors = graph[node]
         for key in neighbors.keys():
-            newCost = cost + neighbors[key]
-            if costs[key] > newCost:
-                costs[key] = newCost
+            new_cost = cost + neighbors[key]
+            if costs[key] > new_cost:
+                costs[key] = new_cost
                 parents[key] = node
         verified.append(node)
-        node = __lowerCost(costs, verified)
-    return __result(parents, costs, graph, start, userfinish)
+        node = _lower_cost(costs, verified)
+    return _result(parents, costs, graph, start, user_finish)
 
 
-def __result(parents, costs, graph, start, finish):
-    __path = __countWay(parents, graph, start, finish)
-    __inversePath = [__path[len(__path) - i] for i in range(1, len(__path) + 1)]
-    __cost = costs[__path[0]]
-    __inversePath.append(__cost)
-    return __inversePath
+def _result(parents, costs, graph, start, finish):
+    path = _count_way(parents, graph, start, finish)
+    inverse_path = [path[len(path) - i] for i in range(1, len(path) + 1)]
+    cost = costs[path[0]]
+    inverse_path.append(cost)
+    return inverse_path
 
 
-def __countWay(parents, graph, start, finish):
+def _count_way(parents, graph, start, finish):
     path = []
-    fin = __checkFinal(graph, finish)
+    fin = _check_final(graph, finish)
     path.append(fin)
     for i in range(len(parents.keys())):
         if path[len(path) - 1] == start:
@@ -40,7 +40,7 @@ def __countWay(parents, graph, start, finish):
     return path
 
 
-def __checkFinal(graph, finish):
+def _check_final(graph, finish):
     if finish:
         return finish
     for __node in graph:
@@ -49,32 +49,32 @@ def __checkFinal(graph, finish):
     return None
 
 
-def __checkStart(graph, start):
+def _check_start(graph, start):
     if start:
         return start
-    __nodeKey = set()
-    for __key in graph.keys():
-        __nodeKey |= set(graph[__key].keys())
-    for __start in set(graph.keys()) - __nodeKey:
-        return __start
+    node_key = set()
+    for key in graph.keys():
+        node_key |= set(graph[key].keys())
+    for start in set(graph.keys()) - node_key:
+        return start
     return None
 
 
-def __countCosts(graph, __start):
-    return {i: graph[__start][i] if i in graph[__start].keys() else float('inf') if i != __start else 0 for i in
+def _count_costs(graph, start):
+    return {i: graph[start][i] if i in graph[start].keys() else float('inf') if i != start else 0 for i in
             graph.keys()}
 
 
-def __countParents(graph, __start):
-    return {i: __start if i in graph[__start].keys() else None for i in graph.keys()}
+def _count_parents(graph, start):
+    return {i: start if i in graph[start].keys() else None for i in graph.keys()}
 
 
-def __lowerCost(costs, verified):
-    lowCost = float('inf')
-    lowCostNode = None
+def _lower_cost(costs, verified):
+    low_cost = float('inf')
+    low_cost_node = None
     for node in costs:
         cost = costs[node]
-        if cost < lowCost and node not in verified:
-            lowCost = cost
-            lowCostNode = node
-    return lowCostNode
+        if cost < low_cost and node not in verified:
+            low_cost = cost
+            low_cost_node = node
+    return low_cost_node
