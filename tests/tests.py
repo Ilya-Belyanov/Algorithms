@@ -9,7 +9,7 @@ class AlgTests(unittest.TestCase):
 
     def test_fast_sort(self):
         self.assertEqual(fast_sort([2, 3, 1, 9, 4, 5], False),
-                         [9, 5, 4, 3, 2, 1], 
+                         [9, 5, 4, 3, 2, 1],
                          "Should be [9, 5, 4, 3, 2, 1]")
         self.assertEqual(fast_sort([2, 3, 1, 9, 4, 5], True),
                          [1, 2, 3, 4, 5, 9],
