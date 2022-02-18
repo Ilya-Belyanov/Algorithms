@@ -46,9 +46,8 @@ def graph_search_r(queue, graph: dict, check_function, verified=None):
     if person not in verified:
         if check_function(person):
             return person
-        else:
-            queue += graph[person]
-            verified += person
+        queue += graph[person]
+        verified += person
     return graph_search_r(queue, graph, verified)
 
 
